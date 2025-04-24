@@ -26,7 +26,6 @@ export const useToastStore = defineStore('toast', {
       const id = uuidv4()
       this.toasts.push({
         id,
-        variant: 'info',
         position: 'bottom-right',
         duration: 3000,
         dismissible: true,

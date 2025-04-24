@@ -46,7 +46,7 @@ const props = defineProps({
     default: false
   },
   type: {
-    type: String,
+    type: String as () => 'button' | 'reset' | 'submit',
     default: 'button'
   },
   className: {

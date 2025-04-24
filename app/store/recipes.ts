@@ -49,7 +49,7 @@ export const useRecipesStore = defineStore('recipes', {
   },
   
   actions: {
-    async fetchRecipes() {
+    async fetchRecipes(p0: { page: number; }) {
       this.loading = true
       this.error = null
       

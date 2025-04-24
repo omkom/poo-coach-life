@@ -10,7 +10,7 @@
       </main>
       
       <!-- Footer -->
-      <Footer />
+      <!--<Footer />-->
       
       <!-- Chat flottant -->
       <ChatLauncher ref="chatLauncherRef" />
@@ -20,11 +20,14 @@
   <script setup lang="ts">
   import { ref } from 'vue'
   import Navbar from '../components/layout/Navbar.vue'
-  import Footer from '../components/layout/Footer.vue'
+  //import Footer from '../components/layout/Footer.vue'
   import ChatLauncher from '../components/chat/ChatLauncher.vue'
   
   // Référence au composant ChatLauncher
-  const chatLauncherRef = ref(null)
+  import type { Ref } from 'vue'
+  import type { default as ChatLauncherType } from '../components/chat/ChatLauncher.vue'
+  
+  const chatLauncherRef = ref<InstanceType<typeof ChatLauncher> | null>(null)
   
   // Méthode pour ouvrir le chat depuis la navbar
   const openChat = () => {

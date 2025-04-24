@@ -1,0 +1,43 @@
+{
+    "extends": "./.nuxt/tsconfig.json",
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "ESNext",
+      "moduleResolution": "Bundler",
+      "strict": true,
+      "jsx": "preserve",
+      "jsxFactory": "h",
+      "jsxFragmentFactory": "Fragment",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "paths": {
+        "~/*": ["./*"],
+        "@/*": ["./*"],
+        "#imports": ["./.nuxt/imports.d.ts"]
+      },
+      "lib": [
+        "ESNext",
+        "DOM",
+        "DOM.Iterable"
+      ],
+      "types": [
+        "node",
+        "vue",
+        "@nuxt/types",
+        "@pinia/nuxt",
+        "@nuxtjs/i18n"
+      ],
+      "baseUrl": "."
+    },
+    "include": [
+      "./**/*.ts",
+      "./**/*.tsx",
+      "./**/*.vue"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist",
+      ".nuxt"
+    ]
+  }

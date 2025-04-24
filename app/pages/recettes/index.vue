@@ -128,7 +128,7 @@
   // Charger les recettes à l'initialisation
   onMounted(async () => {
     try {
-      await recipesStore.fetchRecipes()
+      await recipesStore.fetchRecipes({ page: page.value })
       // Définir la date d'aujourd'hui comme valeur par défaut
       const today = new Date()
       selectedDate.value = today.toISOString().split('T')[0]
@@ -198,7 +198,7 @@
     page.value++
     
     try {
-      await recipesStore.fetchMoreRecipes(page.value)
+      await recipesStore.fetchRecipes({ page: page.value })
     } catch (error) {
       console.error('Erreur lors du chargement de plus de recettes:', error)
       toastStore.error('Impossible de charger plus de recettes.')
@@ -235,4 +235,8 @@
       toastStore.error('Impossible d\'ajouter au calendrier.')
     }
   }
-  </script>
+  
+function $t(arg0: string) {
+    throw new Error('Function not implemented.')
+}
+</script>

@@ -19,7 +19,8 @@
   </template>
   
   <script setup lang="ts">
-  import { useToastStore, Toast } from '../../store/toast'
+  import { useToastStore } from '../../store/toast'
+  import type { Toast } from '../../store/toast'
   
   // Positions possibles pour les toasts
   const positions = [

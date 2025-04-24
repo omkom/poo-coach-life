@@ -108,7 +108,7 @@
   }
   
   // États
-  const isOpen = ref(false)
+  const isOpen = ref<boolean>(false)
   const isMinimized = ref(false)
   const messageInput = ref('')
   const chatMessagesRef = ref<HTMLElement | null>(null)
@@ -154,7 +154,7 @@
   }
   
   // Ouvrir le chat
-  const openChat = () => {
+  function openChat() {
     isOpen.value = true
     isMinimized.value = false
     // Focus sur l'input après ouverture

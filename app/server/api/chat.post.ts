@@ -1,5 +1,6 @@
 // app/server/api/chat.post.ts
 import { defineEventHandler, readBody, createError } from 'h3'
+import { useRuntimeConfig } from '#imports'
 
 // Importer le système prompt pour 💩 Coach
 const POO_COACH_SYSTEM_PROMPT = `

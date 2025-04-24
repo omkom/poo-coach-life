@@ -108,7 +108,8 @@
   </template>
   
   <script setup lang="ts">
-  import { useI18n } from 'vue-i18n'
+  import { navigateTo, clearError } from 'nuxt/app'
+import { useI18n } from 'vue-i18n'
   
   // Props
   const props = defineProps({
