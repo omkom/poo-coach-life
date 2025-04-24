@@ -1,4 +1,4 @@
-<!-- app/components/chat/ChatMessages.vue -->
+<!-- app/components/chat/ChatMessages.vue (complet) -->
 <template>
     <div class="flex flex-col space-y-4 p-4" ref="messagesContainer">
       <!-- Message de bienvenue -->
@@ -39,6 +39,7 @@
   <script setup lang="ts">
   import { ref, watch, onMounted, nextTick } from 'vue'
   import { useI18n } from 'vue-i18n'
+  import ChatMessage from '@/components/chat/ChatMessage.vue'
   
   const { t } = useI18n()
   

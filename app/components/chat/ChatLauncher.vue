@@ -1,4 +1,4 @@
-<!-- app/components/chat/ChatLauncher.vue (mise à jour) -->
+<!-- app/components/chat/ChatLauncher.vue (fixed) -->
 <template>
     <div>
       <!-- Bouton flottant (version fermée) -->
@@ -64,24 +64,21 @@
                 class="flex-1 px-4 py-2 rounded-l-xl border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary"
                 :disabled="isLoading"
               />
-              <Button 
+              <button 
                 type="submit"
-                variant="primary"
-                class="rounded-l-none rounded-r-xl"
+                class="bg-primary text-white font-medium py-2 px-4 rounded-r-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-soft transition duration-200"
                 :disabled="!messageInput.trim() || isLoading"
               >
-                <template #icon-right>
-                  <svg 
-                    class="h-5 w-5" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </template>
-              </Button>
+                <svg 
+                  class="h-5 w-5" 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
             </div>
           </form>
         </div>
@@ -90,11 +87,17 @@
   </template>
   
   <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, onMounted } from 'vue'
   import { v4 as uuidv4 } from 'uuid'
-  import { useToastStore } from '@/store/toast'
+  import ChatMessages from './ChatMessages.vue'
+  import { useToastStore } from '../../store/toast'
   
   // Interface pour les messages de chat
+  interface ChatAction {
+    text: string;
+    value: string;
+  }
+  
   interface ChatMessage {
     id: string;
     content: string;
@@ -102,7 +105,7 @@
     isTyping?: boolean;
     isMarkdown?: boolean;
     timestamp: Date;
-    actions?: { text: string; value: string; }[];
+    actions?: ChatAction[];
   }
   
   // États
@@ -120,7 +123,7 @@
     isOpen.value = true
     // Focus sur l'input après ouverture
     setTimeout(() => {
-      const input = document.querySelector('input[type="text"]')
+      const input = document.querySelector('input[type="text"]') as HTMLInputElement
       if (input) {
         input.focus()
       }
@@ -202,7 +205,7 @@
   }
   
   // Gérer les actions suggérées
-  const handleSuggestedAction = (action: { text: string; value: string }) => {
+  const handleSuggestedAction = (action: ChatAction) => {
     // Ajouter l'action comme un message de l'utilisateur
     messages.value.push({
       id: uuidv4(),

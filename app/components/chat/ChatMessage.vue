@@ -1,4 +1,4 @@
-<!-- app/components/chat/ChatMessage.vue -->
+<!-- app/components/chat/ChatMessage.vue (complet) -->
 <template>
     <div 
       class="mb-4 last:mb-0"
@@ -31,15 +31,14 @@
             
             <!-- Actions supplémentaires si nécessaire -->
             <div v-if="message.actions && message.actions.length > 0" class="mt-3 flex flex-wrap gap-2">
-              <Button 
+              <button 
                 v-for="action in message.actions" 
                 :key="action.text"
-                variant="ghost" 
-                size="sm"
+                class="bg-transparent border border-primary text-primary hover:bg-primary hover:bg-opacity-10 text-sm font-medium py-1 px-2 rounded-xl transition duration-200"
                 @click="handleAction(action)"
               >
                 {{ action.text }}
-              </Button>
+              </button>
             </div>
           </div>
         </div>

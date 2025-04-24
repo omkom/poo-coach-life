@@ -20,7 +20,7 @@
   
   <script setup lang="ts">
   import { computed } from 'vue'
-  import { useToastStore, Toast } from '@/store/toast'
+  import { useToastStore, Toast } from '../../store/toast'
   
   // Positions possibles pour les toasts
   const positions = [

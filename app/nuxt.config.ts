@@ -26,11 +26,10 @@ export default defineNuxtConfig({
     // Modules essentiels
     modules: [
       '@nuxtjs/tailwindcss',
-      '@nuxtjs/i18n',
       '@pinia/nuxt',
     ],
     
-    // Configuration i18n
+    // Module i18n configurations
     i18n: {
       locales: [
         { code: 'fr', iso: 'fr-FR', file: 'fr.json' },
@@ -39,13 +38,22 @@ export default defineNuxtConfig({
       ],
       defaultLocale: 'fr',
       strategy: 'prefix_except_default',
-      lazy: true,
       langDir: 'i18n/',
       detectBrowserLanguage: {
         useCookie: true,
         cookieKey: 'i18n_lang',
         redirectOn: 'root',
       }
+    },
+    
+    // Builds - pour compatibilité et optimisations
+    build: {
+      transpile: ['vue-i18n']
+    },
+    
+    // Auto-imports pour éviter les imports manuels répétitifs
+    imports: {
+      dirs: ['store']
     },
     
     // Ajout de configuration Vite pour alias et imports
@@ -62,5 +70,57 @@ export default defineNuxtConfig({
       },
       // Variables privées (côté serveur)
       openaiApiKey: process.env.OPENAI_API_KEY
+    },
+    
+    // Personnalisation des routes
+    routeRules: {
+      // Exemple: cache statique pour les pages de contenu
+      '/a-propos': { static: true },
+      // Exemple: redirection
+      '/about': { redirect: '/a-propos' }
+    },
+    
+    // Configuration pour Pinia (state management)
+    pinia: {
+      autoImports: ['defineStore', 'storeToRefs']
+    },
+    
+    // Modules TypeScript
+    typescript: {
+      strict: true,
+      typeCheck: true
     }
   })
+
+function defineNuxtConfig(arg0: {
+    app: { head: { title: string; htmlAttrs: { lang: string; }; meta: ({ charset: string; } | { name: string; content: string; } | { hid: string; name: string; content: string; })[]; link: ({ rel: string; type: string; href: string; } | { rel: string; href: string; })[]; }; };
+    // Modules essentiels
+    modules: string[];
+    // Module i18n configurations
+    i18n: { locales: { code: string; iso: string; file: string; }[]; defaultLocale: string; strategy: string; langDir: string; detectBrowserLanguage: { useCookie: boolean; cookieKey: string; redirectOn: string; }; };
+    // Builds - pour compatibilité et optimisations
+    build: { transpile: string[]; };
+    // Auto-imports pour éviter les imports manuels répétitifs
+    imports: { dirs: string[]; };
+    // Ajout de configuration Vite pour alias et imports
+    vite: { optimizeDeps: { include: string[]; }; };
+    // Variables d'environnement publiques
+    runtimeConfig: {
+        public: { apiBase: string; };
+        // Variables privées (côté serveur)
+        openaiApiKey: string;
+    };
+    // Personnalisation des routes
+    routeRules: {
+        // Exemple: cache statique pour les pages de contenu
+        '/a-propos': { static: boolean; };
+        // Exemple: redirection
+        '/about': { redirect: string; };
+    };
+    // Configuration pour Pinia (state management)
+    pinia: { autoImports: string[]; };
+    // Modules TypeScript
+    typescript: { strict: boolean; typeCheck: boolean; };
+}) {
+    throw new Error("Function not implemented.");
+}
