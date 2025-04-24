@@ -2,7 +2,7 @@
 <template>
   <button
     :class="[
-      'font-title font-medium rounded-xl transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2',
+      'font-title font-medium rounded-xl transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary',
       sizeClasses,
       variantClasses,
       disabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-soft',
@@ -67,8 +67,8 @@ const sizeClasses = computed(() => {
 
 const variantClasses = computed(() => {
   switch (props.variant) {
-    case 'primary': 
-      return 'bg-primary text-white border border-primary'
+    case 'primary':
+      return 'bg-primary text-white shadow-soft'
     case 'secondary':
       return 'bg-success text-primary border border-success'
     case 'ghost':

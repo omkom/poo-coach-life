@@ -6,23 +6,23 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
-              <h1 class="font-title font-bold text-3xl md:text-4xl lg:text-5xl text-primary mb-4">
+              <h1 class="font-title font-bold text-4xl md:text-5xl text-primary mb-4">
                 {{ $t('home.hero.title') }}
               </h1>
-              <p class="text-gray-600 text-lg md:text-xl mb-8">
+              <p class="text-gray-600 text-base md:text-lg mb-8">
                 {{ $t('home.hero.subtitle') }}
               </p>
               <div class="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  variant="primary" 
-                  size="lg"
+                <Button
+                  variant="primary"
+                  size="md"
                   to="/recettes"
                 >
                   {{ $t('home.hero.cta') }}
                 </Button>
-                <Button 
-                  variant="ghost" 
-                  size="lg"
+                <Button
+                  variant="ghost"
+                  size="md"
                   @click="openChat"
                 >
                   <span class="mr-2">💬</span>
@@ -60,9 +60,9 @@
               <p class="text-gray-600 mb-4">
                 {{ $t('home.features.recipe.description') }}
               </p>
-              <NuxtLink to="/recettes" class="text-primary hover:underline font-medium">
+              <Button variant="ghost" size="md" to="/recettes">
                 {{ $t('global.actions.read_more') }} →
-              </NuxtLink>
+              </Button>
             </div>
             
             <!-- Feature 2: Chat -->
@@ -74,12 +74,13 @@
               <p class="text-gray-600 mb-4">
                 {{ $t('home.features.chat.description') }}
               </p>
-              <button 
-                @click="openChat" 
-                class="text-primary hover:underline font-medium"
+              <Button
+                variant="ghost"
+                size="md"
+                @click="openChat"
               >
                 {{ $t('global.actions.try_now') }} →
-              </button>
+              </Button>
             </div>
             
             <!-- Feature 3: Routines -->
@@ -91,9 +92,9 @@
               <p class="text-gray-600 mb-4">
                 {{ $t('home.features.routines.description') }}
               </p>
-              <NuxtLink to="/routines" class="text-primary hover:underline font-medium">
+              <Button variant="ghost" size="md" to="/routines">
                 {{ $t('global.actions.read_more') }} →
-              </NuxtLink>
+              </Button>
             </div>
           </div>
         </div>
