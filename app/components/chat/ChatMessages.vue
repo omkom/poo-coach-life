@@ -1,4 +1,4 @@
-<!-- app/components/chat/ChatMessages.vue (complet) -->
+<!-- app/components/chat/ChatMessages.vue -->
 <template>
     <div class="flex flex-col space-y-4 p-4" ref="messagesContainer">
       <!-- Message de bienvenue -->
@@ -39,7 +39,7 @@
   <script setup lang="ts">
   import { ref, watch, onMounted, nextTick } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import ChatMessage from '@/components/chat/ChatMessage.vue'
+  import ChatMessage from './ChatMessage.vue'
   
   const { t } = useI18n()
   
@@ -70,9 +70,9 @@
   
   // Actions de bienvenue suggérées
   const welcomeActions = [
-    { text: 'Comment manger sans se sentir ballonnée ?', value: 'antibloom' },
-    { text: 'Conseille-moi une recette légère pour le soir', value: 'dinner_recipe' },
-    { text: 'Je suis constipée depuis 3 jours', value: 'constipation' }
+    { text: 'Comment manger sans se sentir ballonnée ?', value: 'Je veux des conseils pour éviter les ballonnements quand je mange' },
+    { text: 'Conseille-moi une recette légère pour le soir', value: 'Quelle recette légère me suggères-tu pour le dîner ?' },
+    { text: 'J\'ai souvent un ventre gonflé, que faire ?', value: 'Mon ventre est souvent gonflé et inconfortable, as-tu des conseils ?' }
   ]
   
   // Gérer les actions des messages
@@ -95,3 +95,23 @@
   // Scroll initial
   onMounted(scrollToBottom)
   </script>
+  
+  <style scoped>
+  /* Style pour le scrollbar */
+  div::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  div::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  div::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+  }
+  
+  div::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+  }
+  </style>

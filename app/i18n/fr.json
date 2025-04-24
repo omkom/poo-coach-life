@@ -19,7 +19,9 @@
         "share": "Partager",
         "read_more": "Lire la suite",
         "try_now": "Essayer maintenant",
-        "send": "Envoyer"
+        "send": "Envoyer",
+        "filters": "Filtres",
+        "reset": "Réinitialiser"
       },
       "footer": {
         "explore": "Explorer",
@@ -28,80 +30,211 @@
         "newsletter_cta": "Des astuces digestives chaque semaine",
         "legal": "Mentions légales",
         "privacy": "Confidentialité",
-        "privacy": "Confidentialité",
-      "copyright": "Tous droits réservés"
-    }
-  },
-  "home": {
-    "hero": {
-      "title": "💩 Coach — enfin des conseils de merde (utiles)",
-      "subtitle": "Un accompagnement doux, intelligent et drôle pour les femmes qui veulent réconcilier leur ventre avec leur quotidien",
-      "cta": "Découvrir les recettes digestes"
-    },
-    "features": {
-      "title": "Comment 💩 Coach t'aide au quotidien",
-      "recipe": {
-        "title": "Des recettes qui font du bien au ventre",
-        "description": "Cuisiner sans stress digestif, avec des alternatives pour tous les niveaux et toutes les envies"
-      },
-      "chat": {
-        "title": "Un chatbot sans tabou (et sans jugement)",
-        "description": "Pose tes questions les plus intimes, reçois des conseils pratiques et personnalisés"
-      },
-      "routines": {
-        "title": "Des routines qui ne stressent pas plus que ton transit",
-        "description": "Mouvements doux, respirations et habitudes qui libèrent sans forcer"
+        "copyright": "Tous droits réservés"
       }
     },
-    "testimonials": {
-      "title": "Elles ont essayé 💩 Coach",
-      "more": "Voir plus de témoignages"
+    "home": {
+      "hero": {
+        "title": "💩 Coach — enfin des conseils de merde (utiles)",
+        "subtitle": "Un accompagnement doux, intelligent et drôle pour les femmes qui veulent réconcilier leur ventre avec leur quotidien",
+        "cta": "Découvrir les recettes digestes"
+      },
+      "features": {
+        "title": "Comment 💩 Coach t'aide au quotidien",
+        "recipe": {
+          "title": "Des recettes qui font du bien au ventre",
+          "description": "Cuisiner sans stress digestif, avec des alternatives pour tous les niveaux et toutes les envies"
+        },
+        "chat": {
+          "title": "Un chatbot sans tabou (et sans jugement)",
+          "description": "Pose tes questions les plus intimes, reçois des conseils pratiques et personnalisés"
+        },
+        "routines": {
+          "title": "Des routines qui ne stressent pas plus que ton transit",
+          "description": "Mouvements doux, respirations et habitudes qui libèrent sans forcer"
+        }
+      },
+      "testimonials": {
+        "title": "Elles ont essayé 💩 Coach",
+        "more": "Voir plus de témoignages"
+      }
+    },
+    "recipes": {
+      "title": "Recettes digestes",
+      "subtitle": "Des idées de repas qui font du bien au ventre, faciles à réaliser",
+      "filters": {
+        "title": "Filtrer par",
+        "duration": "Durée",
+        "level": "Niveau",
+        "budget": "Budget",
+        "meal_type": "Type de repas",
+        "digestive_goal": "Objectif digestion",
+        "emotional_context": "Contexte émotionnel"
+      },
+      "duration": {
+        "short": "< 10 min",
+        "medium": "10–20 min",
+        "long": "20–40 min"
+      },
+      "level": {
+        "beginner": "Nulle en cuisine",
+        "intermediate": "Je débute mais j'ai envie",
+        "advanced": "Je suis à l'aise"
+      },
+      "meal_type": {
+        "breakfast": "Petit-déjeuner",
+        "lunch": "Déjeuner léger",
+        "dinner": "Dîner cocooning",
+        "snack": "Snack digeste"
+      },
+      "digestive_goal": {
+        "anti_bloating": "Anti-ballonnement",
+        "transit_boost": "Booster du transit",
+        "digestive_rest": "Repos digestif",
+        "energy_recharge": "Recharger sans lourdeur"
+      },
+      "emotional_context": {
+        "stressed": "Je suis stressée",
+        "tired": "Je suis fatiguée",
+        "self_care": "Je veux prendre soin de moi"
+      },
+      "no_results": "Pas de recettes correspondant à ces critères. Essaie avec moins de filtres !",
+      "tags": {
+        "poo_score": "💩 Score",
+        "fast": "🚀 Rapide",
+        "easy": "💡 Facile",
+        "batchable": "🧺 Batchable",
+        "transit_plus": "🧻 Transit+",
+        "comfort": "🍲 Réconfort",
+        "balanced": "🧠 Équilibrée",
+        "gentle": "🫶 Douce pour le ventre",
+        "storable": "🧊 Se conserve bien",
+        "tea": "🫗 Tisane associée"
+      },
+      "add_to_calendar": {
+        "title": "Ajouter au calendrier",
+        "question": "Quand souhaites-tu préparer cette recette ?",
+        "confirm": "Ajouter",
+        "cancel": "Annuler",
+        "success": "Recette ajoutée à ton calendrier"
+      }
+    },
+    "advice": {
+      "title": "Conseils digestifs",
+      "subtitle": "Des articles clairs et pratiques pour comprendre et apaiser ton ventre",
+      "categories": {
+        "all": "Tous les articles",
+        "bloating": "Ballonnements",
+        "transit": "Transit",
+        "stress": "Stress & digestion",
+        "nutrition": "Nutrition douce"
+      }
+    },
+    "routines": {
+      "title": "Routines bien-être",
+      "subtitle": "Des mouvements doux et des pratiques adaptées pour un ventre détendu",
+      "categories": {
+        "morning": "Routines du matin",
+        "evening": "Routines du soir",
+        "quick": "Express (< 5 min)",
+        "complete": "Complètes (> 10 min)"
+      },
+      "levels": {
+        "easy": "Toute douce",
+        "medium": "Intermédiaire",
+        "advanced": "Pour aller plus loin"
+      }
+    },
+    "chat": {
+      "placeholder": "Pose ta question à 💩 Coach...",
+      "welcome": "Bonjour ! Je suis 💩 Coach, ton alliée pour une digestion plus douce. Comment puis-je t'aider aujourd'hui ?",
+      "suggestions": {
+        "bloating": "Comment manger sans se sentir ballonnée ?",
+        "dinner": "Conseille-moi une recette légère pour le soir",
+        "belly": "J'ai souvent un ventre gonflé, que faire ?"
+      },
+      "error": "Oups, j'ai un petit souci de communication. Tu peux réessayer dans un instant ?"
+    },
+    "shop": {
+      "title": "Boutique douce",
+      "subtitle": "Des produits sélectionnés avec soin pour accompagner ton bien-être digestif",
+      "categories": {
+        "infusions": "Tisanes & infusions",
+        "accessories": "Accessoires bien-être",
+        "books": "Livres & carnets",
+        "bundles": "Packs digestifs"
+      },
+      "filters": {
+        "price": "Prix",
+        "rating": "Avis",
+        "type": "Type de produit"
+      },
+      "product": {
+        "add_to_cart": "Ajouter au panier",
+        "view_details": "Voir détails",
+        "from": "À partir de",
+        "in_stock": "En stock",
+        "out_of_stock": "Rupture de stock",
+        "affiliate_notice": "Lien affilié - Prix identique pour toi"
+      }
+    },
+    "about": {
+      "title": "Pourquoi 💩 Coach ?",
+      "subtitle": "Parce que le transit ne devrait pas être un sujet honteux",
+      "mission": {
+        "title": "Notre mission",
+        "text": "Accompagner les femmes avec douceur, humour et expertise dans un sujet trop longtemps tabou : leur digestion."
+      },
+      "values": {
+        "title": "Nos valeurs",
+        "kindness": {
+          "title": "🧻 Bienveillance radicale",
+          "text": "Jamais de jugement, toujours du soutien"
+        },
+        "clarity": {
+          "title": "🧠 Clarté sans jargon",
+          "text": "Des explications simples, concrètes, applicables"
+        },
+        "no_guilt": {
+          "title": "🫶 Anti-culpabilisation intégrale",
+          "text": "Tu fais ce que tu peux, quand tu peux"
+        },
+        "health": {
+          "title": "🥬 Santé sans pression",
+          "text": "Des conseils doux, progressifs, adaptés à ton quotidien"
+        },
+        "humor": {
+          "title": "💩 Humour sans gêne",
+          "text": "On peut parler de caca et rire, c'est thérapeutique"
+        }
+      }
+    },
+    "notifications": {
+      "newsletter": {
+        "success": "Tu es inscrit(e) à notre newsletter !",
+        "error": "Une erreur est survenue lors de l'inscription."
+      },
+      "favorite": {
+        "added": "Ajouté aux favoris",
+        "removed": "Retiré des favoris"
+      },
+      "calendar": {
+        "added": "Ajouté à ton calendrier",
+        "error": "Impossible d'ajouter au calendrier"
+      }
+    },
+    "errors": {
+      "404": {
+        "title": "Tu t'es un peu perdu·e dans tes intestins ?",
+        "text": "Cette page n'existe pas, mais ne t'inquiète pas, on va te rediriger vers des endroits plus digestes.",
+        "back_home": "Retour à l'accueil",
+        "suggestions": "Tu pourrais aimer :"
+      },
+      "500": {
+        "title": "Oups, trop de fibres dans les tuyaux…",
+        "text": "Notre serveur fait une petite digestion difficile. Essaie de recharger la page dans quelques instants.",
+        "retry": "Réessayer",
+        "contact": "Nous contacter"
+      }
     }
-  },
-  "recipes": {
-    "title": "Recettes digestes",
-    "subtitle": "Des idées de repas qui font du bien au ventre, faciles à réaliser",
-    "filters": {
-      "title": "Filtrer par",
-      "duration": "Durée",
-      "level": "Niveau",
-      "budget": "Budget",
-      "meal_type": "Type de repas",
-      "digestive_goal": "Objectif digestion",
-      "emotional_context": "Contexte émotionnel"
-    },
-    "duration": {
-      "short": "< 10 min",
-      "medium": "10–20 min",
-      "long": "20–40 min"
-    },
-    "level": {
-      "beginner": "Nulle en cuisine",
-      "intermediate": "Je débute mais j'ai envie",
-      "advanced": "Je suis à l'aise"
-    },
-    "meal_type": {
-      "breakfast": "Petit-déjeuner",
-      "lunch": "Déjeuner léger",
-      "dinner": "Dîner cocooning",
-      "snack": "Snack digeste"
-    },
-    "no_results": "Pas de recettes correspondant à ces critères. Essaie avec moins de filtres !",
-    "tags": {
-      "poo_score": "💩 Score",
-      "fast": "🚀 Rapide",
-      "easy": "💡 Facile",
-      "batchable": "🧺 Batchable",
-      "transit_plus": "🧻 Transit+",
-      "comfort": "🍲 Réconfort",
-      "balanced": "🧠 Équilibrée",
-      "gentle": "🫶 Douce pour le ventre",
-      "storable": "🧊 Se conserve bien",
-      "tea": "🫗 Tisane associée"
-    }
-  },
-  "chat": {
-    "placeholder": "Pose ta question à 💩 Coach...",
-    "welcome": "Bonjour ! Je suis 💩 Coach, ton alliée pour une digestion plus douce. Comment puis-je t'aider aujourd'hui ?"
   }
-}

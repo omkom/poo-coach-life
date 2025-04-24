@@ -7,6 +7,7 @@ export interface Toast {
   title?: string
   message: string
   variant: 'success' | 'error' | 'warning' | 'info'
+  position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
   duration?: number
   dismissible?: boolean
 }
@@ -26,6 +27,7 @@ export const useToastStore = defineStore('toast', {
       this.toasts.push({
         id,
         variant: 'info',
+        position: 'bottom-right',
         duration: 3000,
         dismissible: true,
         ...toast
@@ -79,6 +81,11 @@ export const useToastStore = defineStore('toast', {
         variant: 'info',
         ...options
       })
+    },
+    
+    // Effacer toutes les notifications
+    clearAll() {
+      this.toasts = []
     }
   }
 })

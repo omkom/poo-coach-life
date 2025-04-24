@@ -19,7 +19,6 @@
   </template>
   
   <script setup lang="ts">
-  import { computed } from 'vue'
   import { useToastStore, Toast } from '../../store/toast'
   
   // Positions possibles pour les toasts
@@ -48,8 +47,8 @@
   const toastsForPosition = (position: string) => {
     // Par défaut, tous les toasts vont à 'bottom-right' s'ils n'ont pas de position spécifiée
     return toastStore.toasts.filter(toast => 
-      (toast as any).position === position || 
-      (position === 'bottom-right' && !(toast as any).position)
+      toast.position === position || 
+      (position === 'bottom-right' && !toast.position)
     )
   }
   

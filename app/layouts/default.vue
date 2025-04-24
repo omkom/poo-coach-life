@@ -19,6 +19,9 @@
   
   <script setup lang="ts">
   import { ref } from 'vue'
+  import Navbar from '../components/layout/Navbar.vue'
+  import Footer from '../components/layout/Footer.vue'
+  import ChatLauncher from '../components/chat/ChatLauncher.vue'
   
   // Référence au composant ChatLauncher
   const chatLauncherRef = ref(null)

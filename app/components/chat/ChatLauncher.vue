@@ -1,4 +1,4 @@
-<!-- app/components/chat/ChatLauncher.vue (fixed) -->
+<!-- app/components/chat/ChatLauncher.vue -->
 <template>
     <div>
       <!-- Bouton flottant (version fermée) -->
@@ -14,7 +14,7 @@
       <!-- Fenêtre de chat (version ouverte) -->
       <div 
         v-if="isOpen" 
-        class="fixed bottom-6 right-6 bg-white rounded-xl shadow-lg overflow-hidden z-40 w-full max-w-md"
+        class="fixed bottom-0 right-6 bg-white rounded-t-xl shadow-lg overflow-hidden z-40 w-full max-w-md"
         style="max-height: 80vh;"
       >
         <!-- Header du chat -->
@@ -23,28 +23,34 @@
             <span class="text-xl mr-2">💩</span> 
             <span>Coach</span>
           </div>
-          <button 
-            @click="closeChat"
-            class="text-gray-500 hover:text-gray-700 focus:outline-none"
-            aria-label="Fermer le chat"
-          >
-            <svg 
-              class="h-5 w-5" 
-              xmlns="http://www.w3.org/2000/svg" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
+          <div class="flex items-center">
+            <button 
+              @click="minimizeChat"
+              class="text-gray-500 hover:text-gray-700 focus:outline-none mr-2"
+              aria-label="Minimiser le chat"
             >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <button 
+              @click="closeChat"
+              class="text-gray-500 hover:text-gray-700 focus:outline-none"
+              aria-label="Fermer le chat"
+            >
+              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
         
         <!-- Corps du chat - Messages -->
         <div 
           ref="chatMessagesRef"
           class="overflow-y-auto bg-gray-50"
-          style="height: 350px;"
+          :style="isMinimized ? 'height: 0' : 'height: 350px;'"
+          :class="{ 'transition-all duration-300': true }"
         >
           <ChatMessages 
             :messages="messages" 
@@ -54,7 +60,7 @@
         </div>
         
         <!-- Zone de saisie -->
-        <div class="p-4 border-t border-gray-200">
+        <div class="p-4 border-t border-gray-200" v-if="!isMinimized">
           <form @submit.prevent="sendMessage">
             <div class="flex">
               <input 
@@ -69,13 +75,7 @@
                 class="bg-primary text-white font-medium py-2 px-4 rounded-r-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-soft transition duration-200"
                 :disabled="!messageInput.trim() || isLoading"
               >
-                <svg 
-                  class="h-5 w-5" 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
+                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </button>
@@ -87,9 +87,8 @@
   </template>
   
   <script setup lang="ts">
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, watch } from 'vue'
   import { v4 as uuidv4 } from 'uuid'
-  import ChatMessages from './ChatMessages.vue'
   import { useToastStore } from '../../store/toast'
   
   // Interface pour les messages de chat
@@ -110,17 +109,54 @@
   
   // États
   const isOpen = ref(false)
+  const isMinimized = ref(false)
   const messageInput = ref('')
-  const chatMessagesRef = ref(null)
+  const chatMessagesRef = ref<HTMLElement | null>(null)
   const messages = ref<ChatMessage[]>([])
   const isLoading = ref(false)
   
   // Stores
   const toastStore = useToastStore()
   
+  // Persister les messages entre les sessions
+  onMounted(() => {
+    loadMessages()
+  })
+  
+  // Sauvegarder les messages quand ils changent
+  watch(messages, () => {
+    saveMessages()
+  }, { deep: true })
+  
+  // Fonctions de sauvegarde et chargement
+  const saveMessages = () => {
+    if (messages.value.length > 0) {
+      localStorage.setItem('chat_messages', JSON.stringify(messages.value))
+    }
+  }
+  
+  const loadMessages = () => {
+    const savedMessages = localStorage.getItem('chat_messages')
+    if (savedMessages) {
+      try {
+        // Parse les dates
+        const parsed = JSON.parse(savedMessages)
+        messages.value = parsed.map((msg: any) => ({
+          ...msg,
+          timestamp: new Date(msg.timestamp)
+        }))
+      } catch (error) {
+        console.error('Erreur lors du chargement des messages:', error)
+        // En cas d'erreur, on repart de zéro
+        messages.value = []
+      }
+    }
+  }
+  
   // Ouvrir le chat
   const openChat = () => {
     isOpen.value = true
+    isMinimized.value = false
     // Focus sur l'input après ouverture
     setTimeout(() => {
       const input = document.querySelector('input[type="text"]') as HTMLInputElement
@@ -133,6 +169,12 @@
   // Fermer le chat
   const closeChat = () => {
     isOpen.value = false
+    isMinimized.value = false
+  }
+  
+  // Minimiser le chat
+  const minimizeChat = () => {
+    isMinimized.value = !isMinimized.value
   }
   
   // Envoyer un message
@@ -155,42 +197,41 @@
     isLoading.value = true
     
     try {
-      // Simuler un appel API à OpenAI (sera remplacé par un vrai appel)
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      // Appel à notre API
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: userInput,
+          history: messages.value.slice(-10).map(msg => ({
+            role: msg.isUser ? 'user' : 'assistant',
+            content: msg.content
+          }))
+        })
+      })
       
-      // Créer une réponse simulée
-      let botResponse: ChatMessage = {
+      if (!response.ok) {
+        throw new Error('Erreur de communication avec le serveur')
+      }
+      
+      const data = await response.json()
+      
+      // Créer la réponse du bot
+      const botResponse: ChatMessage = {
         id: uuidv4(),
-        content: '',
+        content: data.response.content,
         isUser: false,
         timestamp: new Date()
       }
       
-      // Logique simple pour simuler les réponses du coach
-      if (userInput.toLowerCase().includes('recette') || userInput.toLowerCase().includes('manger')) {
-        botResponse.content = "Je te suggère d'essayer une soupe de carottes et gingembre ce soir. Elle est douce pour ton ventre et facile à digérer. Tu veux la recette complète ?"
-        botResponse.actions = [
-          { text: "Oui, montre-moi la recette", value: "show_recipe_carrot_ginger" },
-          { text: "Non merci, autre suggestion", value: "other_recipe_suggestion" }
-        ]
-      } else if (userInput.toLowerCase().includes('constip') || userInput.toLowerCase().includes('transit')) {
-        botResponse.content = "La constipation peut être frustrante. Commençons par augmenter ton hydratation et ajouter des fibres solubles. As-tu essayé la routine du matin pour stimuler ton transit ?"
-        botResponse.actions = [
-          { text: "Quelle routine du matin ?", value: "morning_routine" },
-          { text: "Quels aliments riches en fibres ?", value: "fiber_rich_foods" }
-        ]
-      } else if (userInput.toLowerCase().includes('bonjour') || userInput.toLowerCase().includes('salut')) {
-        botResponse.content = "Bonjour ! Je suis 💩 Coach, ton alliée pour une digestion plus douce. Comment puis-je t'aider aujourd'hui ?"
-        botResponse.actions = [
-          { text: "J'ai des ballonnements", value: "bloating_issues" },
-          { text: "Je cherche des recettes légères", value: "light_recipes" }
-        ]
-      } else {
-        botResponse.content = "Merci pour ta question. Je suis là pour t'aider avec tout ce qui concerne ta digestion et ton bien-être intestinal. As-tu des symptômes particuliers ou cherches-tu des conseils généraux ?"
-        botResponse.actions = [
-          { text: "Conseils généraux", value: "general_advice" },
-          { text: "Parle-moi des aliments à éviter", value: "foods_to_avoid" }
-        ]
+      // Ajouter des actions suggérées si présentes dans la réponse
+      if (data.suggestions && data.suggestions.length > 0) {
+        botResponse.actions = data.suggestions.map((suggestion: string) => ({
+          text: suggestion,
+          value: suggestion
+        }))
       }
       
       // Ajouter la réponse du bot
@@ -198,7 +239,20 @@
       
     } catch (error) {
       console.error('Erreur lors de l\'envoi du message:', error)
-      toastStore.error('Oups, 💩 Coach est distrait. Réessaie dans un instant.')
+      
+      // Réponse de secours en cas d'erreur
+      const fallbackResponse: ChatMessage = {
+        id: uuidv4(),
+        content: "Oups, j'ai un petit souci de communication. Tu peux réessayer dans un instant ?",
+        isUser: false,
+        timestamp: new Date(),
+        actions: [
+          { text: "Réessayer", value: userInput }
+        ]
+      }
+      
+      messages.value.push(fallbackResponse)
+      toastStore.error('💩 Coach est momentanément indisponible. Réessaie dans quelques instants.')
     } finally {
       isLoading.value = false
     }

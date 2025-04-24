@@ -86,14 +86,14 @@
             size="sm"
             @click="resetFilters"
           >
-            Réinitialiser
+            {{ $t('global.actions.reset') }}
           </Button>
           <Button 
             variant="primary" 
             size="sm"
             @click="applyFilters"
           >
-            Filtrer
+            {{ $t('global.actions.filters') }}
           </Button>
         </div>
       </div>
@@ -101,8 +101,9 @@
   </template>
   
   <script setup lang="ts">
-  import { ref, reactive, watch } from 'vue'
+  import { ref, watch } from 'vue'
   import { useI18n } from 'vue-i18n'
+  import Button from '../ui/Button.vue'
   
   const { t } = useI18n()
   
@@ -124,10 +125,10 @@
   }
   
   const digestiveGoals = {
-    antiBloom: 'Anti-ballonnement',
-    transitBoost: 'Booster du transit',
-    digestiveRest: 'Repos digestif',
-    energyRecharge: 'Recharger sans lourdeur'
+    anti_bloating: t('recipes.digestive_goal.anti_bloating'),
+    transit_boost: t('recipes.digestive_goal.transit_boost'),
+    digestive_rest: t('recipes.digestive_goal.digestive_rest'),
+    energy_recharge: t('recipes.digestive_goal.energy_recharge')
   }
   
   // État des filtres sélectionnés

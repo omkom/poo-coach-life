@@ -13,35 +13,46 @@
       <!-- Filtres -->
       <RecipeFilters @filter-change="handleFilterChange" />
       
-      <!-- Grille de recettes -->
-      <RecipeGrid 
-        :recipes="filteredRecipes" 
-        @reset-filters="resetFilters"
-        @add-to-calendar="handleAddToCalendar"
-      />
-      
-      <!-- Pagination -->
-      <div class="mt-8 flex justify-center" v-if="filteredRecipes.length > 0">
-        <Button 
-          v-if="hasMoreRecipes"
-          variant="ghost" 
-          @click="loadMore"
-        >
-          Voir plus de recettes
-        </Button>
+      <!-- Résultats de recherche -->
+      <div v-if="isLoading" class="py-12 text-center">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        <p class="mt-4 text-gray-600">Chargement des recettes...</p>
       </div>
       
-      <!-- Modal d'ajout au calendrier (simple pour l'instant) -->
+      <div v-else>
+        <!-- Grille de recettes -->
+        <RecipeGrid 
+          :recipes="filteredRecipes" 
+          @reset-filters="resetFilters"
+          @add-to-calendar="handleAddToCalendar"
+        />
+        
+        <!-- Pagination -->
+        <div class="mt-8 flex justify-center" v-if="filteredRecipes.length > 0">
+          <Button 
+            v-if="hasMoreRecipes"
+            variant="ghost" 
+            @click="loadMore"
+            :disabled="isLoadingMore"
+          >
+            <span v-if="isLoadingMore">Chargement...</span>
+            <span v-else>Voir plus de recettes</span>
+          </Button>
+        </div>
+      </div>
+      
+      <!-- Modal d'ajout au calendrier -->
       <div 
         v-if="showCalendarModal" 
         class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
       >
         <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
           <h3 class="font-title font-bold text-xl mb-4">
-            Ajouter au calendrier
+            {{ $t('recipes.add_to_calendar.title') }}
           </h3>
           <p class="mb-4">
-            Quand souhaites-tu préparer "{{ selectedRecipe?.title }}" ?
+            {{ $t('recipes.add_to_calendar.question') }}
+            <strong v-if="selectedRecipe">{{ selectedRecipe.title }}</strong>?
           </p>
           <div class="mb-4">
             <input 
@@ -52,10 +63,10 @@
           </div>
           <div class="flex justify-end space-x-3">
             <Button variant="ghost" @click="showCalendarModal = false">
-              Annuler
+              {{ $t('recipes.add_to_calendar.cancel') }}
             </Button>
             <Button variant="primary" @click="confirmAddToCalendar">
-              Ajouter
+              {{ $t('recipes.add_to_calendar.confirm') }}
             </Button>
           </div>
         </div>
@@ -65,6 +76,11 @@
   
   <script setup lang="ts">
   import { ref, computed, onMounted } from 'vue'
+  import { useToastStore } from '../../store/toast'
+  import { useRecipesStore } from '../../store/recipes'
+  import Button from '../../components/ui/Button.vue'
+  import RecipeFilters from '../../components/recipes/RecipeFilters.vue'
+  import RecipeGrid from '../../components/recipes/RecipeGrid.vue'
   
   // Types
   interface Recipe {
@@ -88,17 +104,21 @@
     digestiveGoals: string[];
   }
   
+  // Stores
+  const toastStore = useToastStore()
+  const recipesStore = useRecipesStore()
+  
   // État
-  const recipes = ref<Recipe[]>([])
+  const isLoading = ref(true)
+  const isLoadingMore = ref(false)
+  const page = ref(1)
+  const perPage = ref(9)
+  const hasMoreRecipes = ref(false)
   const filters = ref<Filters>({
     durations: [],
     mealTypes: [],
     digestiveGoals: []
   })
-  const page = ref(1)
-  const perPage = ref(9)
-  const hasMoreRecipes = ref(true)
-  const isLoading = ref(false)
   
   // État pour le calendrier
   const showCalendarModal = ref(false)
@@ -107,121 +127,22 @@
   
   // Charger les recettes à l'initialisation
   onMounted(async () => {
-    await loadRecipes()
-    
-    // Définir la date d'aujourd'hui comme valeur par défaut
-    const today = new Date()
-    selectedDate.value = today.toISOString().split('T')[0]
-  })
-  
-  // Charger les recettes (simulation API)
-  const loadRecipes = async () => {
-    isLoading.value = true
-    
     try {
-      // Simulation d'appel API
-      await new Promise(resolve => setTimeout(resolve, 500))
-      
-      // Mock de données pour le développement
-      const mockRecipes: Recipe[] = [
-        {
-          id: '1',
-          slug: 'smoothie-banane-lin',
-          title: 'Smoothie banane et graines de lin',
-          description: 'Un délicieux smoothie riche en fibres solubles pour un réveil en douceur.',
-          imageUrl: 'https://images.unsplash.com/photo-1528714652565-e9142cf75110?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
-          prepTime: 5,
-          difficulty: 'easy',
-          digestiveScore: 4,
-          tags: ['batchable', 'transit_plus', 'gentle'],
-          mealType: 'breakfast',
-          digestiveGoal: 'transitBoost'
-        },
-        {
-          id: '2',
-          slug: 'saumon-patate-douce',
-          title: 'Saumon et purée de patate douce',
-          description: 'Un plat complet et sain, riche en oméga 3 et en fibres douces.',
-          imageUrl: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
-          prepTime: 15,
-          cookTime: 20,
-          difficulty: 'medium',
-          digestiveScore: 5,
-          tags: ['comfort', 'balanced', 'gentle'],
-          mealType: 'dinner',
-          digestiveGoal: 'digestiveRest'
-        },
-        {
-          id: '3',
-          slug: 'porridge-flocons-avoine',
-          title: 'Porridge aux flocons d\'avoine',
-          description: 'Démarrez la journée avec ce porridge onctueux riche en fibres solubles.',
-          imageUrl: 'https://images.unsplash.com/photo-1517093157656-b9eccef01cb1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
-          prepTime: 10,
-          cookTime: 5,
-          difficulty: 'easy',
-          digestiveScore: 5,
-          tags: ['comfort', 'transit_plus', 'storable'],
-          mealType: 'breakfast',
-          digestiveGoal: 'transitBoost'
-        },
-        {
-          id: '4',
-          slug: 'soupe-carotte-gingembre',
-          title: 'Soupe carotte et gingembre',
-          description: 'Une soupe légère et réchauffante pour apaiser votre ventre.',
-          imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
-          prepTime: 15,
-          cookTime: 25,
-          difficulty: 'easy',
-          digestiveScore: 4,
-          tags: ['comfort', 'antiBloom', 'batchable'],
-          mealType: 'dinner',
-          digestiveGoal: 'antiBloom'
-        },
-        {
-          id: '5',
-          slug: 'yaourt-vegetal-fruits-rouges',
-          title: 'Yaourt végétal aux fruits rouges',
-          description: 'Un encas léger et fruité, pauvre en lactose.',
-          imageUrl: 'https://images.unsplash.com/photo-1488477181946-6428a0bfdf32?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
-          prepTime: 5,
-          difficulty: 'easy',
-          digestiveScore: 3,
-          tags: ['fast', 'gentle', 'tea'],
-          mealType: 'snack',
-          digestiveGoal: 'digestiveRest'
-        },
-        {
-          id: '6',
-          slug: 'bowl-riz-complet-legumes',
-          title: 'Bowl de riz complet et légumes',
-          description: 'Un repas équilibré, rassasiant mais digeste.',
-          imageUrl: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
-          prepTime: 20,
-          cookTime: 30,
-          difficulty: 'medium',
-          digestiveScore: 4,
-          tags: ['balanced', 'storable', 'batchable'],
-          mealType: 'lunch',
-          digestiveGoal: 'energyRecharge'
-        }
-      ]
-      
-      recipes.value = mockRecipes
-      
-      // Déterminer s'il y a plus de pages
-      hasMoreRecipes.value = false // Pour le mock, on limite à une page
+      await recipesStore.fetchRecipes()
+      // Définir la date d'aujourd'hui comme valeur par défaut
+      const today = new Date()
+      selectedDate.value = today.toISOString().split('T')[0]
     } catch (error) {
-      console.error('Erreur lors du chargement des recettes:', error)
+      console.error('Erreur lors du chargement initial des recettes:', error)
+      toastStore.error('Impossible de charger les recettes.')
     } finally {
       isLoading.value = false
     }
-  }
+  })
   
   // Filtrer les recettes selon les critères
   const filteredRecipes = computed(() => {
-    let result = [...recipes.value]
+    let result = [...recipesStore.recipes]
     
     // Filtrer par durée
     if (filters.value.durations.length > 0) {
@@ -271,8 +192,19 @@
   
   // Charger plus de recettes
   const loadMore = async () => {
+    if (isLoadingMore.value) return
+    
+    isLoadingMore.value = true
     page.value++
-    await loadRecipes()
+    
+    try {
+      await recipesStore.fetchMoreRecipes(page.value)
+    } catch (error) {
+      console.error('Erreur lors du chargement de plus de recettes:', error)
+      toastStore.error('Impossible de charger plus de recettes.')
+    } finally {
+      isLoadingMore.value = false
+    }
   }
   
   // Gérer l'ajout au calendrier
@@ -282,17 +214,25 @@
   }
   
   // Confirmer l'ajout au calendrier
-  const confirmAddToCalendar = () => {
-    if (selectedRecipe.value && selectedDate.value) {
-      // Ici viendra la logique d'intégration avec Google Calendar ou autre
-      console.log(`Recette "${selectedRecipe.value.title}" ajoutée au calendrier pour le ${selectedDate.value}`)
+  const confirmAddToCalendar = async () => {
+    if (!selectedRecipe.value || !selectedDate.value) return
+    
+    try {
+      // Ici on simule l'appel à l'API pour ajouter au calendrier
+      await new Promise(resolve => setTimeout(resolve, 500))
+      
+      // Afficher une notification de succès
+      toastStore.success(
+        `${selectedRecipe.value.title} ${$t('recipes.add_to_calendar.success')}`, 
+        { position: 'bottom-center' }
+      )
       
       // Fermer la modal
       showCalendarModal.value = false
       selectedRecipe.value = null
-      
-      // Feedback à l'utilisateur
-      // À implémenter: Toast ou notification
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout au calendrier:', error)
+      toastStore.error('Impossible d\'ajouter au calendrier.')
     }
   }
   </script>

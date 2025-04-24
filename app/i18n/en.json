@@ -1,0 +1,240 @@
+{
+  "global": {
+    "site_name": "💩 Coach",
+    "tagline": "It's not crap. Just good advice at last.",
+    "navigation": {
+      "home": "Home",
+      "recipes": "Recipes",
+      "advice": "Advice",
+      "routines": "Routines",
+      "shop": "Shop",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "actions": {
+      "talk_to_coach": "Talk to 💩 Coach",
+      "subscribe": "Subscribe",
+      "add_to_calendar": "Add to calendar",
+      "add_to_favorites": "Add to favorites",
+      "share": "Share",
+      "read_more": "Read more",
+      "try_now": "Try now",
+      "send": "Send",
+      "filters": "Filters",
+      "reset": "Reset"
+    },
+    "footer": {
+      "explore": "Explore",
+      "stay_informed": "Stay informed",
+      "newsletter_placeholder": "your@email.com",
+      "newsletter_cta": "Weekly digestive tips",
+      "legal": "Legal notices",
+      "privacy": "Privacy policy",
+      "copyright": "All rights reserved"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "💩 Coach — finally some useful poop advice",
+      "subtitle": "A gentle, smart, and fun companion for women who want to reconcile their belly with daily life",
+      "cta": "Discover digestive recipes"
+    },
+    "features": {
+      "title": "How 💩 Coach helps you daily",
+      "recipe": {
+        "title": "Recipes that make your belly feel good",
+        "description": "Cook without digestive stress, with alternatives for all levels and preferences"
+      },
+      "chat": {
+        "title": "A chatbot without taboos (and without judgment)",
+        "description": "Ask your most intimate questions, get practical and personalized advice"
+      },
+      "routines": {
+        "title": "Routines that don't stress you more than your transit",
+        "description": "Gentle movements, breathing exercises, and habits that free without forcing"
+      }
+    },
+    "testimonials": {
+      "title": "They tried 💩 Coach",
+      "more": "See more testimonials"
+    }
+  },
+  "recipes": {
+    "title": "Digestive Recipes",
+    "subtitle": "Meal ideas that make your belly feel good, easy to prepare",
+    "filters": {
+      "title": "Filter by",
+      "duration": "Duration",
+      "level": "Level",
+      "budget": "Budget",
+      "meal_type": "Meal type",
+      "digestive_goal": "Digestive goal",
+      "emotional_context": "Emotional context"
+    },
+    "duration": {
+      "short": "< 10 min",
+      "medium": "10–20 min",
+      "long": "20–40 min"
+    },
+    "level": {
+      "beginner": "Kitchen novice",
+      "intermediate": "I'm starting but willing to try",
+      "advanced": "I'm comfortable"
+    },
+    "meal_type": {
+      "breakfast": "Breakfast",
+      "lunch": "Light lunch",
+      "dinner": "Cozy dinner",
+      "snack": "Digestive snack"
+    },
+    "digestive_goal": {
+      "anti_bloating": "Anti-bloating",
+      "transit_boost": "Transit booster",
+      "digestive_rest": "Digestive rest",
+      "energy_recharge": "Recharge without heaviness"
+    },
+    "emotional_context": {
+      "stressed": "I'm stressed",
+      "tired": "I'm tired",
+      "self_care": "I want to take care of myself"
+    },
+    "no_results": "No recipes match these criteria. Try with fewer filters!",
+    "tags": {
+      "poo_score": "💩 Score",
+      "fast": "🚀 Quick",
+      "easy": "💡 Easy",
+      "batchable": "🧺 Batchable",
+      "transit_plus": "🧻 Transit+",
+      "comfort": "🍲 Comfort",
+      "balanced": "🧠 Balanced",
+      "gentle": "🫶 Gentle on belly",
+      "storable": "🧊 Stores well",
+      "tea": "🫗 Associated tea"
+    },
+    "add_to_calendar": {
+      "title": "Add to calendar",
+      "question": "When would you like to prepare this recipe?",
+      "confirm": "Add",
+      "cancel": "Cancel",
+      "success": "Recipe added to your calendar"
+    }
+  },
+  "advice": {
+    "title": "Digestive Advice",
+    "subtitle": "Clear and practical articles to understand and soothe your belly",
+    "categories": {
+      "all": "All articles",
+      "bloating": "Bloating",
+      "transit": "Transit",
+      "stress": "Stress & digestion",
+      "nutrition": "Gentle nutrition"
+    }
+  },
+  "routines": {
+    "title": "Wellness Routines",
+    "subtitle": "Gentle movements and adapted practices for a relaxed belly",
+    "categories": {
+      "morning": "Morning routines",
+      "evening": "Evening routines",
+      "quick": "Quick (< 5 min)",
+      "complete": "Complete (> 10 min)"
+    },
+    "levels": {
+      "easy": "Very gentle",
+      "medium": "Intermediate",
+      "advanced": "More challenging"
+    }
+  },
+  "chat": {
+    "placeholder": "Ask your question to 💩 Coach...",
+    "welcome": "Hello! I'm 💩 Coach, your ally for gentler digestion. How can I help you today?",
+    "suggestions": {
+      "bloating": "How can I eat without feeling bloated?",
+      "dinner": "Suggest a light recipe for dinner",
+      "belly": "I often have a swollen belly, what should I do?"
+    },
+    "error": "Oops, I'm having a small communication issue. Can you try again in a moment?"
+  },
+  "shop": {
+    "title": "Gentle Shop",
+    "subtitle": "Carefully selected products to support your digestive wellness",
+    "categories": {
+      "infusions": "Teas & infusions",
+      "accessories": "Wellness accessories",
+      "books": "Books & journals",
+      "bundles": "Digestive bundles"
+    },
+    "filters": {
+      "price": "Price",
+      "rating": "Reviews",
+      "type": "Product type"
+    },
+    "product": {
+      "add_to_cart": "Add to cart",
+      "view_details": "View details",
+      "from": "From",
+      "in_stock": "In stock",
+      "out_of_stock": "Out of stock",
+      "affiliate_notice": "Affiliate link - Same price for you"
+    }
+  },
+  "about": {
+    "title": "Why 💩 Coach?",
+    "subtitle": "Because transit shouldn't be a shameful subject",
+    "mission": {
+      "title": "Our mission",
+      "text": "To support women with gentleness, humor, and expertise on a subject that has been taboo for too long: their digestion."
+    },
+    "values": {
+      "title": "Our values",
+      "kindness": {
+        "title": "🧻 Radical kindness",
+        "text": "Never judgment, always support"
+      },
+      "clarity": {
+        "title": "🧠 Clarity without jargon",
+        "text": "Simple, concrete, applicable explanations"
+      },
+      "no_guilt": {
+        "title": "🫶 Zero guilt approach",
+        "text": "You do what you can, when you can"
+      },
+      "health": {
+        "title": "🥬 Health without pressure",
+        "text": "Gentle, progressive advice adapted to your daily life"
+      },
+      "humor": {
+        "title": "💩 Humor without shame",
+        "text": "We can talk about poop and laugh, it's therapeutic"
+      }
+    }
+  },
+  "notifications": {
+    "newsletter": {
+      "success": "You are subscribed to our newsletter!",
+      "error": "An error occurred during subscription."
+    },
+    "favorite": {
+      "added": "Added to favorites",
+      "removed": "Removed from favorites"
+    },
+    "calendar": {
+      "added": "Added to your calendar",
+      "error": "Unable to add to calendar"
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "Got a bit lost in your intestines?",
+      "text": "This page doesn't exist, but don't worry, we'll redirect you to more digestible places.",
+      "back_home": "Back to home",
+      "suggestions": "You might like:"
+    },
+    "500": {
+      "title": "Oops, too much fiber in the pipes...",
+      "text": "Our server is having a little digestive difficulty. Try reloading the page in a few moments.",
+      "retry": "Try again",
+      "contact": "Contact us"
+    }
+  }
+}
