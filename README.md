@@ -40,16 +40,22 @@
 
 ## 📦 Installation locale
 
+docker-compose up -d # lance PostgreSQL, n8n, etc.
 ```bash
 git clone https://github.com/ton-user/poo-coach.life.git
 cd poo-coach.life
 # Copier l’exemple de variables d’environnement
 cp .env.example .env
-# Installer les dépendances et initialiser la BDD + services
+# Démarrer les services (PostgreSQL, n8n, etc.)
+docker-compose up -d
+
+# Installer les dépendances et initialiser la base de données
+cd app
 npm install
-./init.sh            # initialise la BDD et les migrations
-docker-compose up -d # lance PostgreSQL, n8n, etc.
-# Démarrer le serveur en mode développement
+npm run prisma:migrate   # exécute les migrations
+npm run prisma:generate  # génère le client Prisma
+
+# Lancer le serveur Nuxt en mode développement
 npm run dev
 ```
 

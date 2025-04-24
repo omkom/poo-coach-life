@@ -1,4 +1,6 @@
 // app/nuxt.config.ts
+import { defineNuxtConfig } from 'nuxt';
+
 export default defineNuxtConfig({
     app: {
       head: {
@@ -30,16 +32,16 @@ export default defineNuxtConfig({
       '@nuxtjs/i18n'
     ],
     
-    // Module i18n configurations
+    // Module i18n configurations - Correction des locales
     i18n: {
       locales: [
-        { code: 'fr', iso: 'fr-FR', file: 'fr.json' },
-        { code: 'en', iso: 'en-US', file: 'en.json' },
-        { code: 'es', iso: 'es-ES', file: 'es.json' }
+        { code: 'fr', file: 'fr.json' },
+        { code: 'en', file: 'en.json' },
+        { code: 'es', file: 'es.json' }
       ],
       defaultLocale: 'fr',
       strategy: 'prefix_except_default',
-      lazy: true,  // Chargement paresseux des fichiers de traduction
+      lazy: true,
       langDir: 'i18n/',
       detectBrowserLanguage: {
         useCookie: true,
