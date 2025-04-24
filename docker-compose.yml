@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  poo-coach-web:
+    container_name: poo-coach-web
+    image: node:20
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "3000:3000"
+    environment:
+      - NUXT_PORT=3000
+      - NUXT_HOST=0.0.0.0
+      - DATABASE_URL=postgresql://postgres:postgres@poo-db:5432/poocoach
+    depends_on:
+      - poo-db
+
+  poo-db:
+    container_name: poo-coach-db
+    image: postgres:15
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: poocoach
+    ports:
+      - "5433:5432"
+
+volumes:
+  postgres_data:
+

@@ -1,0 +1,149 @@
+-- Prisma schema extension for poo-coach.life
+
+model Recipe {
+  id              String   @id @default(cuid())
+  name            String
+  slug            String   @unique
+  description     String
+  image           String
+  prepTime        Int
+  cookTime        Int?
+  totalTime       Int
+  yield           String
+  category        String
+  cuisine         String
+  keywords        String[]
+  difficulty      String
+  budget          String
+  digestionFocus  String
+  emotionalState  String?
+  mealType        String
+  tags            String[]
+  ingredients     String[]
+  steps           Json
+  nutrition       Json?
+  videoUrl        String?
+  videoThumb      String?
+  videoName       String?
+  author          String   @default("💩 Coach")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([slug])
+}
+
+model Routine {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  type        String
+  duration    Int
+  level       String
+  steps       Json
+  videoUrl    String?
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Tisane {
+  id          String   @id @default(cuid())
+  name        String
+  effect      String
+  ingredients String[]
+  method      String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  summary     String
+  content     Json
+  tags        String[]
+  cover       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Dossier {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  summary     String
+  cover       String?
+  content     Json     // structure avec plusieurs sections + articles liés
+  relatedIds  String[] // liste d’articles, routines ou recettes liés
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model UserFavorite {
+  id        String   @id @default(cuid())
+  userId    String
+  recipeId  String?
+  articleId String?
+  routineId String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model UserProfile {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String?
+  avatar        String?
+  language      String   @default("fr")
+  hasConsented  Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model CalendarEvent {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  eventDate   DateTime
+  type        String
+  relatedSlug String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Feedback {
+  id        String   @id @default(cuid())
+  userId    String?
+  content   String
+  source    String?
+  rating    Int?
+  createdAt DateTime @default(now())
+}
+
+model Product {
+  id            String   @id @default(cuid())
+  name          String
+  slug          String   @unique
+  description   String
+  image         String
+  price         Float
+  category      String
+  isAvailable   Boolean  @default(true)
+  affiliateLink String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model AffiliateClick {
+  id          String   @id @default(cuid())
+  productId   String
+  userId      String?
+  sourcePage  String?
+  timestamp   DateTime @default(now())
+
+  @@index([productId])
+}
