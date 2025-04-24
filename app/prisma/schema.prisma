@@ -1,5 +1,13 @@
--- Prisma schema extension for poo-coach.life
+// Datasource definition for PostgreSQL
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
+// Generator for Prisma Client
+generator client {
+  provider = "prisma-client-js"
+}
 model Recipe {
   id              String   @id @default(cuid())
   name            String

@@ -1,0 +1,240 @@
+{
+  "global": {
+    "site_name": "💩 Coach",
+    "tagline": "No es mierda. Por fin buenos consejos.",
+    "navigation": {
+      "home": "Inicio",
+      "recipes": "Recetas",
+      "advice": "Consejos",
+      "routines": "Rutinas",
+      "shop": "Tienda",
+      "about": "Acerca de",
+      "contact": "Contacto"
+    },
+    "actions": {
+      "talk_to_coach": "Hablar con 💩 Coach",
+      "subscribe": "Suscribirse",
+      "add_to_calendar": "Añadir al calendario",
+      "add_to_favorites": "Añadir a favoritos",
+      "share": "Compartir",
+      "read_more": "Leer más",
+      "try_now": "Prueba ahora",
+      "send": "Enviar",
+      "filters": "Filtros",
+      "reset": "Reiniciar"
+    },
+    "footer": {
+      "explore": "Explorar",
+      "stay_informed": "Mantente informada",
+      "newsletter_placeholder": "tu@email.com",
+      "newsletter_cta": "Consejos digestivos semanales",
+      "legal": "Avisos legales",
+      "privacy": "Política de privacidad",
+      "copyright": "Todos los derechos reservados"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "💩 Coach — por fin consejos de mierda (útiles)",
+      "subtitle": "Una compañía suave, inteligente y divertida para mujeres que quieren reconciliar su vientre con su vida diaria",
+      "cta": "Descubrir recetas digestivas"
+    },
+    "features": {
+      "title": "Cómo 💩 Coach te ayuda cada día",
+      "recipe": {
+        "title": "Recetas que hacen bien a tu vientre",
+        "description": "Cocina sin estrés digestivo, con alternativas para todos los niveles y preferencias"
+      },
+      "chat": {
+        "title": "Un chatbot sin tabúes (y sin juicios)",
+        "description": "Haz tus preguntas más íntimas, recibe consejos prácticos y personalizados"
+      },
+      "routines": {
+        "title": "Rutinas que no te estresan más que tu tránsito",
+        "description": "Movimientos suaves, ejercicios de respiración y hábitos que liberan sin forzar"
+      }
+    },
+    "testimonials": {
+      "title": "Ellas probaron 💩 Coach",
+      "more": "Ver más testimonios"
+    }
+  },
+  "recipes": {
+    "title": "Recetas digestivas",
+    "subtitle": "Ideas de comidas que hacen bien al vientre, fáciles de preparar",
+    "filters": {
+      "title": "Filtrar por",
+      "duration": "Duración",
+      "level": "Nivel",
+      "budget": "Presupuesto",
+      "meal_type": "Tipo de comida",
+      "digestive_goal": "Objetivo digestivo",
+      "emotional_context": "Contexto emocional"
+    },
+    "duration": {
+      "short": "< 10 min",
+      "medium": "10–20 min",
+      "long": "20–40 min"
+    },
+    "level": {
+      "beginner": "Principiante en la cocina",
+      "intermediate": "Estoy empezando pero con ganas",
+      "advanced": "Me siento cómoda"
+    },
+    "meal_type": {
+      "breakfast": "Desayuno",
+      "lunch": "Almuerzo ligero",
+      "dinner": "Cena reconfortante",
+      "snack": "Snack digestivo"
+    },
+    "digestive_goal": {
+      "anti_bloating": "Anti-hinchazón",
+      "transit_boost": "Estimular el tránsito",
+      "digestive_rest": "Descanso digestivo",
+      "energy_recharge": "Recargar sin pesadez"
+    },
+    "emotional_context": {
+      "stressed": "Estoy estresada",
+      "tired": "Estoy cansada",
+      "self_care": "Quiero cuidarme"
+    },
+    "no_results": "No hay recetas que coincidan con estos criterios. ¡Prueba con menos filtros!",
+    "tags": {
+      "poo_score": "💩 Puntuación",
+      "fast": "🚀 Rápida",
+      "easy": "💡 Fácil",
+      "batchable": "🧺 Preparable en lotes",
+      "transit_plus": "🧻 Tránsito+",
+      "comfort": "🍲 Reconfortante",
+      "balanced": "🧠 Equilibrada",
+      "gentle": "🫶 Suave para el vientre",
+      "storable": "🧊 Se conserva bien",
+      "tea": "🫗 Infusión asociada"
+    },
+    "add_to_calendar": {
+      "title": "Añadir al calendario",
+      "question": "¿Cuándo quieres preparar esta receta?",
+      "confirm": "Añadir",
+      "cancel": "Cancelar",
+      "success": "Receta añadida a tu calendario"
+    }
+  },
+  "advice": {
+    "title": "Consejos digestivos",
+    "subtitle": "Artículos claros y prácticos para entender y calmar tu vientre",
+    "categories": {
+      "all": "Todos los artículos",
+      "bloating": "Hinchazón",
+      "transit": "Tránsito",
+      "stress": "Estrés y digestión",
+      "nutrition": "Nutrición suave"
+    }
+  },
+  "routines": {
+    "title": "Rutinas de bienestar",
+    "subtitle": "Movimientos suaves y prácticas adaptadas para un vientre relajado",
+    "categories": {
+      "morning": "Rutinas matutinas",
+      "evening": "Rutinas nocturnas",
+      "quick": "Rápidas (< 5 min)",
+      "complete": "Completas (> 10 min)"
+    },
+    "levels": {
+      "easy": "Muy suave",
+      "medium": "Intermedio",
+      "advanced": "Más desafiante"
+    }
+  },
+  "chat": {
+    "placeholder": "Haz tu pregunta a 💩 Coach...",
+    "welcome": "¡Hola! Soy 💩 Coach, tu aliada para una digestión más suave. ¿Cómo puedo ayudarte hoy?",
+    "suggestions": {
+      "bloating": "¿Cómo puedo comer sin sentirme hinchada?",
+      "dinner": "Sugiéreme una receta ligera para la cena",
+      "belly": "A menudo tengo el vientre hinchado, ¿qué debo hacer?"
+    },
+    "error": "Ups, tengo un pequeño problema de comunicación. ¿Puedes intentarlo de nuevo en un momento?"
+  },
+  "shop": {
+    "title": "Tienda suave",
+    "subtitle": "Productos cuidadosamente seleccionados para apoyar tu bienestar digestivo",
+    "categories": {
+      "infusions": "Tés e infusiones",
+      "accessories": "Accesorios de bienestar",
+      "books": "Libros y diarios",
+      "bundles": "Paquetes digestivos"
+    },
+    "filters": {
+      "price": "Precio",
+      "rating": "Opiniones",
+      "type": "Tipo de producto"
+    },
+    "product": {
+      "add_to_cart": "Añadir al carrito",
+      "view_details": "Ver detalles",
+      "from": "Desde",
+      "in_stock": "En stock",
+      "out_of_stock": "Agotado",
+      "affiliate_notice": "Enlace afiliado - Mismo precio para ti"
+    }
+  },
+  "about": {
+    "title": "¿Por qué 💩 Coach?",
+    "subtitle": "Porque el tránsito no debería ser un tema vergonzoso",
+    "mission": {
+      "title": "Nuestra misión",
+      "text": "Acompañar a las mujeres con suavidad, humor y experiencia en un tema que ha sido tabú durante demasiado tiempo: su digestión."
+    },
+    "values": {
+      "title": "Nuestros valores",
+      "kindness": {
+        "title": "🧻 Amabilidad radical",
+        "text": "Nunca juzgamos, siempre apoyamos"
+      },
+      "clarity": {
+        "title": "🧠 Claridad sin jerga",
+        "text": "Explicaciones simples, concretas, aplicables"
+      },
+      "no_guilt": {
+        "title": "🫶 Enfoque cero culpabilidad",
+        "text": "Haces lo que puedes, cuando puedes"
+      },
+      "health": {
+        "title": "🥬 Salud sin presión",
+        "text": "Consejos suaves, progresivos, adaptados a tu día a día"
+      },
+      "humor": {
+        "title": "💩 Humor sin vergüenza",
+        "text": "Podemos hablar de caca y reírnos, es terapéutico"
+      }
+    }
+  },
+  "notifications": {
+    "newsletter": {
+      "success": "¡Te has suscrito a nuestro boletín!",
+      "error": "Ocurrió un error durante la suscripción."
+    },
+    "favorite": {
+      "added": "Añadido a favoritos",
+      "removed": "Eliminado de favoritos"
+    },
+    "calendar": {
+      "added": "Añadido a tu calendario",
+      "error": "No se pudo añadir al calendario"
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "¿Te has perdido un poco en tus intestinos?",
+      "text": "Esta página no existe, pero no te preocupes, te redirigiremos a lugares más digestivos.",
+      "back_home": "Volver al inicio",
+      "suggestions": "Te podría gustar:"
+    },
+    "500": {
+      "title": "Ups, demasiada fibra en las tuberías...",
+      "text": "Nuestro servidor está teniendo una pequeña dificultad digestiva. Intenta recargar la página en unos momentos.",
+      "retry": "Intentar de nuevo",
+      "contact": "Contáctanos"
+    }
+  }
+}
