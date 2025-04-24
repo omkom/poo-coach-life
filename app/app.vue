@@ -8,7 +8,7 @@
     <ToastContainer />
   </template>
   
-  <style>
+  <style lang="postcss">
   /* Styles globaux pour l'application */
   html {
     font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
