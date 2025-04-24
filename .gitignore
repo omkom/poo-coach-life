@@ -22,6 +22,9 @@ lerna-debug.log*
 .env.*
 !.env.example
 
+# Build
+*package-lock.json
+
 # Editeur
 .idea
 .vscode/*
