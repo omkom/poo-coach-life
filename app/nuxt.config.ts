@@ -1,5 +1,5 @@
 // app/nuxt.config.ts
-import { defineNuxtConfig } from 'nuxt';
+import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
     app: {
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
           { charset: 'utf-8' },
           { name: 'viewport', content: 'width=device-width, initial-scale=1' },
           { 
-            hid: 'description', 
+            key: 'description', 
             name: 'description', 
             content: 'Accompagnement doux, bienveillant et efficace pour les femmes souffrant de côlon paresseux. Recettes digestes, routines bien-être et conseils personnalisés.'
           },
@@ -48,9 +48,9 @@ export default defineNuxtConfig({
         cookieKey: 'i18n_lang',
         redirectOn: 'root',
       },
-      vueI18n: {
+      vueI18n: () => ({
         fallbackLocale: 'fr'
-      }
+      })
     },
     
     // Builds - pour compatibilité et optimisations
@@ -76,7 +76,8 @@ export default defineNuxtConfig({
         apiBase: process.env.NUXT_PUBLIC_API_URL || 'http://localhost:3000/api'
       },
       // Variables privées (côté serveur)
-      openaiApiKey: process.env.OPENAI_API_KEY
+      // Clé API OpenAI (côté serveur). Valeur vide si non définie pour éviter les erreurs.
+      openaiApiKey: process.env.OPENAI_API_KEY || ''
     },
     
     // Personnalisation des routes
