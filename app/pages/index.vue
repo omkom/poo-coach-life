@@ -33,7 +33,7 @@
             <div class="hidden md:block">
               <!-- Hero image or illustration -->
               <img 
-                src="/images/hero-illustration.svg" 
+                src="/images/hero-illustration.png" 
                 alt="💩 Coach illustration" 
                 class="max-w-full h-auto"
                 @error="handleImageError"

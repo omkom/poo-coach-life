@@ -24,13 +24,13 @@ export default defineNuxtConfig({
       ]
     }
   },
-
+  components: true,
   // Modules essentiels
   modules: [
     '@nuxtjs/tailwindcss',
-    '@pinia/nuxt',
-    '@nuxtjs/i18n',
-    '@pinia/nuxt',
+    // Pinia with auto-imports for stores
+    ['@pinia/nuxt', { autoImports: ['defineStore', 'storeToRefs'] }],
+    '@nuxtjs/i18n'
   ],
 
   // Module i18n configurations - Correction des configurations
@@ -92,10 +92,6 @@ export default defineNuxtConfig({
     '/about': { redirect: '/a-propos' }
   },
 
-  // Configuration pour Pinia (state management)
-  pinia: {
-    autoImports: ['defineStore', 'storeToRefs']
-  },
 
   // Modules TypeScript
   typescript: {
